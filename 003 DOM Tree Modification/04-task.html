@@ -16,7 +16,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
@@ -27,9 +28,8 @@
         /*
         Задание:
         Создайте таблицу (table, tr, td) на основе массива объектов с именем source. Каждый объект - отдельная строка таблицы. Свойство month - значение для первой колонок.
-        Свойство amont - значение для второй колонки.
+        Свойство amount - значение для второй колонки.
         */
-
         let source = [
             {
                 month: "Январь",
@@ -60,6 +60,27 @@
                 amount: 100
             }
         ];
+
+        const table = document.createElement("table"),
+            tBody = document.createElement("tbody");
+        const createCell = (value) => {
+            let td = document.createElement("td");
+            td.innerHTML = value;
+            return td;
+        },
+            createRow = (obj) => {
+                let tr = document.createElement("tr");
+                for (let key in obj) {
+                    tr.append(createCell(obj[key]))
+                }
+                return tr;
+            };
+
+        for (let item of source) {
+            tBody.append(createRow(item))
+        }
+        table.append(tBody);
+        document.querySelector("body").append(table);
 
     </script>
 </body>

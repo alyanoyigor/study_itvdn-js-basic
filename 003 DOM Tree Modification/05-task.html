@@ -21,7 +21,8 @@
             min-width: 250px;
         }
 
-        .user-card p, .user-card ul {
+        .user-card p,
+        .user-card ul {
             padding: 0;
             margin: 0;
         }
@@ -33,7 +34,7 @@
 </head>
 
 <body>
-    
+
     <script>
 
         /*
@@ -491,11 +492,12 @@
             for (const friend of user.friends) {
                 ul.insertAdjacentHTML("beforeend", `<li>${friend.name}</li>`);
             }
-            
+            if (user.friends.length < 5) div.style.border = "2px solid red";
+
             div.append(ul);
             return div;
         }
-        
+
         users.forEach(user => {
             let card = createUserCard(user);
             document.body.append(card);

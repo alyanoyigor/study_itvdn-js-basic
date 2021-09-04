@@ -17,7 +17,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
@@ -63,7 +64,22 @@
         удалять нужно не ячейку td, в которой находится значение, а строку tr, в которой расположена эта ячейка).
         */
 
-        
+        // const table = document.querySelector("#statsTable");
+        // const monthsListForRemove = [];
+        // for (let row of table.rows) {
+        //     const num = +row.cells[1].innerHTML;
+        //     if (num <= 100) monthsListForRemove.push(row);
+        // }
+        // for (let month of monthsListForRemove) {
+        //     month.remove();
+        // }
+
+        const secondColTd = document.querySelectorAll("#statsTable tr td:nth-child(2)");
+        for (const td of secondColTd) {
+            if (+td.innerHTML <= 100) {
+                td.parentElement.remove();
+            }
+        }
     </script>
 </body>
 
