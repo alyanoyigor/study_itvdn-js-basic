@@ -24,10 +24,19 @@
         */
 
         let user = {
-            firstName: "Jhon",
+            firstName: "John",
             lastName: "Doe",
             age: "25",
         }
+        const dataBinds = document.querySelectorAll("[data-bind]");
+        for (const dataBind of dataBinds) {
+            Object.entries(user).forEach((element, index) => {
+                if (dataBind.dataset.bind === element[0]) {
+                    dataBind.innerHTML = element[1];
+                }
+            });
+        }
+
 
     </script>
 </body>

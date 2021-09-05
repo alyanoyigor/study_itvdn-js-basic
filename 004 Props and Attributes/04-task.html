@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 04</title>
+    <!-- <style>
+        [data-status="completed"] {
+            border: 1px solid green;
+        }
+        [data-status="expired"] {
+            border: 1px solid red;
+        }
+    </style> -->
 </head>
 
 <body>
@@ -30,6 +38,21 @@
         Задание:
         Для элементов с атрибутом data-status="expired" сделайте рамку красного цвета. Для элементов с атрибутом data-status="completed" выведите рамку зеленого цвета.
         */
+        const tasks = document.querySelectorAll(".task");
+        for (const task of tasks) {
+            if (task.hasAttribute("data-status")) {
+                switch (task.dataset.status) {
+                    case "completed":
+                        task.style.border = "1px solid red"
+                        break;
+                    case "expired":
+                        task.style.border = "1px solid green"
+                        break;
+                }
+            }
+        }
+
+
     </script>
 </body>
 
