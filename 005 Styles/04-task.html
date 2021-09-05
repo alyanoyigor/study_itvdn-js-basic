@@ -17,7 +17,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
 
@@ -65,8 +66,12 @@
         Задание:
         Напишите сценарий, который добавит класс attention строкам таблицы, в которых во второй колонке находятся значения меньше 100.
         */
+        const secondTdElements = document.querySelectorAll("td:nth-child(2)");
+        for (let td of secondTdElements) {
+            if (td.textContent <= 100) td.parentElement.className = "attention";
+        }
 
-        </script>
+    </script>
 </body>
 
 </html>

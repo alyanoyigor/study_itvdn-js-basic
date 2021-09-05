@@ -35,6 +35,14 @@
 
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let busyDays = ["Monday", "Thursday", "Friday"];
+        for (let day of days) {
+            let div = document.createElement("div");
+            div.textContent = day;
+            busyDays.forEach((value) => {
+                if (value === day) div.className = "busy-day";
+            })
+            document.querySelector("body").append(div);
+        }
 
     </script>
 </body>
