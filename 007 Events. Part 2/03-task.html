@@ -29,6 +29,34 @@
         красного цвета на соответствующий div. Если зажаты клавиши Ctrl + A, то красная рамка добавляется сразу
         для всех div
         */
+        function setNewColor(elem) {
+            if (elem.style.backgroundColor !== "red") {
+                elem.style.backgroundColor = "red";
+            } else {
+                elem.style.backgroundColor = "green";
+            }
+        }
+        let div = document.querySelectorAll("div");
+        document.addEventListener("keyup", function (e) {
+            if (e.code === "KeyA" && e.ctrlKey) {
+                for (let d of div) {
+                    setNewColor(d);
+                }
+            };
+            switch (e.code) {
+                case "Digit1":
+                    setNewColor(div[0]);
+                    break;
+                case "Digit2":
+                    setNewColor(div[1]);
+                    break;
+                case "Digit3":
+                    setNewColor(div[2]);
+                    break;
+                default:
+                    break;
+            }
+        })
     </script>
 </body>
 

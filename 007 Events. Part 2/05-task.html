@@ -11,10 +11,12 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         #userList {
             width: 200px;
             display: inline-block;
         }
+
         #userList>li {
             cursor: pointer;
             list-style: none;
@@ -26,7 +28,7 @@
 
         #output {
             display: inline-block;
-            border:1px solid gray;
+            border: 1px solid gray;
             padding: 10px;
             vertical-align: top;
             margin-top: 20px;
@@ -153,16 +155,33 @@
             }
         ];
 
-        let uslerList = document.querySelector("#userList");
+        let userList = document.querySelector("#userList");
+        let output = document.querySelector("#output");
 
         for (let index = 0; index < users.length; index++) {
             const currentUser = users[index];
             let li = document.createElement("li");
             li.textContent = currentUser.name.first + " " + currentUser.name.last;
             li.addEventListener("mouseenter", mouseEnterHandler);
+            li.addEventListener("mouseleave", mouseEnterHandler);
             li.dataset.userNumber = index;
-            uslerList.append(li);
+            userList.append(li);
         }
+        function mouseEnterHandler() {
+            const currentUser = users[this.dataset.userNumber];
+            if (!output.innerHTML) {
+                output.innerHTML =
+                    `<ul>
+                    <li>Age: ${currentUser.age}</li>
+                    <li>Balance: ${currentUser.balance}</li>
+                    <li>Company: ${currentUser.company}</li>
+                    <li>Email: ${currentUser.email}</li>
+                </ul>`
+            } else {
+                output.innerHTML = "";
+            }
+        }
+
     </script>
 </body>
 

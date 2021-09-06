@@ -29,20 +29,27 @@
         let distance = 10;
 
         document.addEventListener("keydown", function (e) {
+            let step = distance;
+            if (e.shiftKey) step *= 2;
             switch (e.code) {
                 case "ArrowLeft":
-                    moveLeft(div, distance);
+                    // e.shiftKey ? moveLeft(div, distance * 5) : moveLeft(div, distance);
+                    moveLeft(div, step);
                     break;
                 case "ArrowRight":
-                    moveRight(div, distance);
+                    // e.shiftKey ? moveRight(div, distance * 5) : moveRight(div, distance);
+                    moveRight(div, step);
                     break;
                 case "ArrowUp":
-                    moveUp(div, distance);
+                    // e.shiftKey ? moveUp(div, distance * 5) : moveUp(div, distance);
+                    moveUp(div, step);
                     break;
                 case "ArrowDown":
-                    moveDown(div, distance);
+                    // e.shiftKey ? moveDown(div, distance * 5) : moveDown(div, distance);
+                    moveDown(div, step);
                     break;
             }
+
         });
 
         function moveUp(element, distance) {
