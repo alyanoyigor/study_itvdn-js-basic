@@ -9,6 +9,18 @@
 </head>
 
 <body>
+    <div class="cylinder-forms">
+
+        <label for="cylinder-radius">Радиус</label>
+        <input type="text" name="cylinder-radius">
+
+
+        <label for="cylinder-height">Высота</label>
+        <input type="text" name="cylinder-height">
+
+        <button type="button" id="calc-cylinder-volume">Результат</button>
+        <span id="result"></span>
+    </div>
     <script>
         /*
         Задание:
@@ -17,6 +29,17 @@
         Разместите на странице два поля ввода - первое для радиуса цилиндра, второе для высоты цилиндра.
         Объем цилиндра выведите в тело страницы.
         */
+        const calcBtn = document.querySelector("#calc-cylinder-volume"),
+            result = document.querySelector("#result"),
+            cylinderRadius = document.querySelector("[name='cylinder-radius']"),
+            cylinderHeight = document.querySelector("[name='cylinder-height']");
+
+        calcBtn.addEventListener("click", calcCylinderVolume);
+        
+        function calcCylinderVolume() {
+            result.textContent = Math.round((Math.PI * cylinderRadius.value ** 2 * cylinderHeight.value) * 100) / 100;
+        }
+
     </script>
 </body>
 

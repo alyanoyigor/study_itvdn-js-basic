@@ -30,6 +30,13 @@
             border: 1px solid gray;
             padding: 3px 8px;
             margin: 2px 10px;
+            justify-content: space-between;
+        }
+
+        .task-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .task p {
@@ -84,12 +91,18 @@
         let addTaskButton = document.querySelector("#add-task-btn");
         let startMessage = document.querySelector("#start-message");
         let taskList = document.querySelector(".task-list");
+        // let removeBtn = document.querySelector(".remove-btn");
 
         addTaskButton.addEventListener("click", addTaskHandler);
-
+        taskNameInput.addEventListener("keyup", function (e) {
+            if (e.key === "Enter") addTaskHandler();
+        })
         function createTask(text) {
             let div = document.createElement("div");
             div.classList.add("task");
+
+            let divTaskText = document.createElement("div");
+            divTaskText.className = "task-text"
 
             let input = document.createElement("input");
             input.addEventListener("click", changeTaskState);
@@ -98,17 +111,30 @@
             let p = document.createElement("p");
             p.innerText = text;
 
-            div.append(input);
-            div.append(p);
+            let removeBtn = document.createElement("button");
+            // removeBtn.className = "remove-btn";
+            removeBtn.innerText = "Удалить";
+            removeBtn.addEventListener("click", removeTask);
+
+
+            divTaskText.append(input);
+            divTaskText.append(p);
+            div.append(divTaskText);
+            div.append(removeBtn);
 
             return div;
         }
 
+        function removeTask() {
+            this.parentElement.remove();
+            if (taskList.children.length === 1) startMessage.hidden = false;
+        }
+
         function changeTaskState() {
             if (this.checked) {
-                this.parentElement.classList.add("completed");
-            } else { 
-                this.parentElement.classList.remove("completed");
+                this.parentElement.parentElement.classList.add("completed");
+            } else {
+                this.parentElement.parentElement.classList.remove("completed");
             }
         }
 
@@ -119,10 +145,11 @@
                 let newTask = createTask(taskNameInput.value);
                 taskList.append(newTask);
                 taskNameInput.value = "";
-            } else { 
-                alert("введите имя задачи");
+            } else {
+                alert("Введите имя задачи");
             }
         }
+
     </script>
 </body>
 
