@@ -9,9 +9,11 @@
 </head>
 
 <body>
-    <button>Кнопка 1</button>
-    <button>Кнопка 2</button>
-    <button>Кнопка 3</button>
+    <div id="btn-container">
+        <button>Кнопка 1</button>
+        <button>Кнопка 2</button>
+        <button>Кнопка 3</button>
+    </div>
 
     <script>
         /*
@@ -20,12 +22,13 @@
         результат работы сценария не должен измениться.
         */
         let buttons = document.querySelectorAll("button");
-        buttons.forEach(btn => {
-            btn.addEventListener("click", clickHandler);
-        });
-
-        function clickHandler() {
-            alert(this.innerText);
+        let btnContainer = document.querySelector("#btn-container");
+        btnContainer.addEventListener("click", clickHandler);
+        // buttons.forEach(btn => {
+        //     btn.addEventListener("click", clickHandler);
+        // });
+        function clickHandler(e) {
+            alert(e.target.innerText);
         }
     </script>
 </body>
