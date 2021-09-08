@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 04</title>
     <style>
-       body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -16,7 +16,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
@@ -24,9 +25,22 @@
 
 <body>
     <table>
+        <tbody>
 
+        </tbody>
     </table>
 
+    <template>
+        <tr>
+            {{#source}}
+            <td>{{month}}</td>
+            <td>{{amount}}</td>
+            <td>{{bestProduct}}</td>
+            {{/source}}
+        </tr>
+    </template>
+
+    <script src="mustache.min.js"></script>
     <script>
         /*
         Задание:
@@ -34,38 +48,65 @@
         Свойство month должно выводиться в первый столбец, а свойство amount во второй столбец таблицы.
         Количество строк таблицы должно соответствовать количеству элементов массива source. Используйте любой удобный способ работы с шаблонами.
         */
-
         let source = [
             {
                 month: "Январь",
-                amount: 20
+                amount: 20,
+                bestProduct: "Орехи"
             },
             {
                 month: "Февраль",
-                amount: 140
+                amount: 140,
+                bestProduct: "Молоко"
             },
             {
                 month: "Март",
-                amount: 115
+                amount: 115,
+                bestProduct: "Бананы"
+
             },
             {
                 month: "Апрель",
-                amount: 100
+                amount: 100,
+                bestProduct: "Хлеб"
             },
             {
                 month: "Март",
-                amount: 80
+                amount: 80,
+                bestProduct: "Капуста"
             },
             {
                 month: "Июнь",
-                amount: 90
+                amount: 90,
+                bestProduct: "Шоколад"
             },
             {
                 month: "Июль",
-                amount: 100
+                amount: 100,
+                bestProduct: "Йогурт"
             }
         ];
-        
+        let tbody = document.querySelector("tbody");
+        let template = document.querySelector("template");
+
+        function createHead(obj) {
+            let tr = document.createElement("tr");
+            for (let i = 0; i < Object.keys(obj).length; i++) {
+                let th = document.createElement("th");
+                th.innerText = Object.keys(obj)[i];
+                tr.append(th);
+            }
+            tbody.append(tr);
+        }
+        function createBody(arr) {
+            arr.forEach(obj => {
+                tbody.innerHTML += Mustache.render(template.innerHTML, obj);
+            })
+        }
+
+        createHead(source[0]);
+        createBody(source);
+
     </script>
 </body>
 
