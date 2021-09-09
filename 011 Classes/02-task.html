@@ -19,6 +19,19 @@
         Создайте два экземпляра данного класса, передав произвольные значения в качестве параметров конструктора и выведите
         на консоль значения объема двух экземпляров.
         */
+        class Cylinder {
+            constructor(height, radius) {
+                this.height = height;
+                this.radius = radius;
+            }
+            getVolume() {
+                console.log(Math.ceil((Math.PI * this.radius ** 2 * this.height) * 100) / 100);
+            }
+        }
+        let cylinder1 = new Cylinder(10, 20);
+        let cylinder2 = new Cylinder(5, 10);
+        cylinder1.getVolume();
+        cylinder2.getVolume();
     </script>
 </body>
 

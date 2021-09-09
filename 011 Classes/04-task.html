@@ -68,6 +68,8 @@
     <div class="input-panel">
         <input type="text" id="task-name-input">
         <button id="add-task-btn">Добавить задачу</button>
+        <button id="show-not-completed-tasks-btn">Показать не завершенные задачи</button>
+        <button id="show-all-tasks-btn">Показать все</button>
     </div>
     <div class="task-list">
         <p id="start-message">Нет новых задач</p>
@@ -87,15 +89,13 @@
         */
         let taskNameInput = document.querySelector("#task-name-input");
         let addTaskButton = document.querySelector("#add-task-btn");
+        let showNotCompletedTasksButton = document.querySelector("#show-not-completed-tasks-btn");
+        let showAllTasksButton = document.querySelector("#show-all-tasks-btn");
         let startMessage = document.querySelector("#start-message");
         let taskList = document.querySelector(".task-list");
         let tasks = [];
 
         addTaskButton.addEventListener("click", addTaskHandler);
-
-        taskNameInput.addEventListener("keydown", function (e) {
-            if (e.code == "Enter") addTaskHandler();
-        })
 
         function addTaskHandler() {
             if (taskNameInput.value) {
@@ -110,6 +110,23 @@
                 alert("введите имя задачи");
             }
         }
+
+        showAllTasksButton.addEventListener("click", function () {
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                task.createIn(taskList);
+            })
+        });
+        showNotCompletedTasksButton.addEventListener("click", function () {
+            taskList.innerHTML = "";
+            tasks.filter(task => task.isDone === false).forEach(task => {
+                task.createIn(taskList);
+            });
+        });
+
+        taskNameInput.addEventListener("keydown", function (e) {
+            if (e.code == "Enter") addTaskHandler();
+        })
 
         class Task {
             constructor(text) {
@@ -131,6 +148,11 @@
 
                 this.div.append(input);
                 this.div.append(p);
+                
+                if (this.isDone) {
+                    this.div.classList.add("completed");
+                    input.checked = true;
+                }
                 element.append(this.div);
             }
 
