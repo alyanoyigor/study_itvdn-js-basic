@@ -15,45 +15,73 @@
         Найдите и исправьте ошибку
         */
 
-        class Car {
-            model;
+        // class Car {
+        //     model;
+        //     constructor(model) {
+        //         this.model = model;
+        //     }
 
-            constructor(model) {
-                this.model = model;
-            }
+        //     move() {
+        //         console.log(`Машина ${this.model} двигается со скоростью 80 км/час`);
+        //     }
+        // }
 
-            move() {
-                console.log(`Машина ${this.model} двигается со скоростью 80 км/час`);
+        // class Truck extends Car {
+        //     weight;
+        //     maxCargo;
+        //     model;
+
+        //     constructor(model, maxCargo) {
+        //         this.model = model;
+        //         this.maxCargo = maxCargo;
+        //     }
+
+        //     loadCargo(weight) {
+        //         if (weight > this.maxCargo) {
+        //             console.log("Этот грузовик не может перевозить более 1000кг груза");
+        //         }
+        //         else {
+        //             this.weight = weight;
+        //             console.log(`В грузовик загружено ${this.weight}кг.`);
+        //         }
+        //     }
+        // }
+
+        // let v1 = new Car("Mazda");
+        // v1.move();
+
+        // let v2 = new Truck();
+        // v2.loadCargo(1500);
+        // v2.move();
+
+        class Constr {
+            constructor(prop) {
+                this.count = prop;
             }
         }
-
-        class Truck extends Car {
-            weight;
-            maxCargo;
-            model;
-
-            constructor(model, maxCargo) {
-                this.model = model;
-                this.maxCargo = maxCargo;
-            }
-
-            loadCargo(weight) {
-                if (weight > this.maxCargo) {
-                    console.log("Этот грузовик не может перевозить более 1000кг груза");
-                }
-                else {
-                    this.weight = weight;
-                    console.log(`В грузовик загружено ${this.weight}кг.`);
-                }
+        class NewConstr extends Constr {
+            constructor(newProp, prop) {
+                super(prop);
+                this.newCount = newProp;
             }
         }
-
-        let v1 = new Car("Mazda");
-        v1.move();
-
-        let v2 = new Truck();
-        v2.loadCargo(1500);
-        v2.move();
+        class Open {
+            hello = 10;
+            good = 0;
+            #error = "ErROr";
+            static move = "MOVE";
+        }
+        class NewOpen extends Open {
+            newHello = 30;
+        }
+        // let constr = new Constr(5);
+        // let newConstr = new NewConstr(10, 20);
+        // console.log(constr);
+        // console.log(newConstr);
+        let open = new Open();
+        let newOpen = new NewOpen();
+        console.log(open);
+        console.log(newOpen);
     </script>
 </body>
 
