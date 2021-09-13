@@ -20,22 +20,18 @@
             #threshold;
 
             constructor(threshold, values) {
-                this.#values = values;
                 this.#threshold = threshold;
+                this.#values = values;
             }
 
             // Возвращает все значения из массива values, которые больше, чем значение переменной threshold
             getGreaterThanThreshold() {
-                return this.#values.filter(function (v) {
-                    return v > this.#threshold;
-                })
+                return this.#values.filter((v) => v > this.#threshold)
             }
 
             // возвращает все значения из массива values, которые меньше, чем значение переменной threshold 
             getLessThanThreshold() {
-                return this.#values.filter(function (v) {
-                    return v < this.#threshold;
-                })
+                return this.#values.filter((v) => v < this.#threshold)
             }
         }
 

@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    <label for="guessNumber">Напишите число:</label>
+    <input type="number" name="guessNumber">
+    <button type="button" id="check-btn">Отправить</button>
+    <button type="button" id="new-game-btn">Новая игра</button>
     <script>
         /*
         Задание:
@@ -31,6 +35,58 @@
         Пользователь: 56
         Сценарий: Правильно! Загаданное значение 56. Вы угадали с 4й попытки за 10 сек.
         */
+        let input = document.querySelector("input");
+        let checkBtn = document.querySelector("#check-btn");
+        let newGameBtn = document.querySelector("#new-game-btn");
+
+        class GuessGame {
+            constructor(maxNum) {
+                this.randomNumber = Math.floor(Math.random() * (maxNum + 1));
+                this.attempt = 0;
+                this.timerCount = 0;
+            }
+            tickOn() {
+                this.timer = setInterval(() => this.timerCount++, 1000);
+            }
+            tickOff() {
+                clearInterval(this.timer);
+            }
+            getNumber(value) {
+                this.possibleNumber = value;
+                if (this.possibleNumber < this.randomNumber) {
+                    this.attempt++;
+                    alert(`я загадал значение больше, чем ${this.possibleNumber}`)
+                } else if (this.possibleNumber > this.randomNumber) {
+                    this.attempt++;
+                    alert(`я загадал значение меньше, чем ${this.possibleNumber}`)
+                } else {
+                    this.attempt++;
+                    this.tickOff();
+                    alert(`Правильно! Загаданное значение ${this.randomNumber}. Вы угадали с ${this.attempt}й попытки за ${this.timerCount} сек.`)
+                }
+            }
+        }
+        let game = new GuessGame(100);
+        game.tickOn();
+
+        function newGame() {
+            game = new GuessGame(100);
+            game.tickOn();
+        }
+
+        function checkNum() {
+            game.getNumber(input.value);
+            input.value = "";
+        }
+
+        checkBtn.addEventListener("click", () => {
+            checkNum();
+        });
+        input.addEventListener("keyup", (e) => {
+            if (e.code === "Enter") checkNum();
+        })
+
+        newGameBtn.addEventListener("click", newGame);
     </script>
 </body>
 

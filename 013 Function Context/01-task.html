@@ -52,15 +52,16 @@
         let element = document.querySelector("#element");
         let elementWidth = parseInt(getComputedStyle(element).width);
         let containerWidth = parseInt(getComputedStyle(document.querySelector("#container")).width);
-
+        let interval;
+        let step = 3;
         let direction = "right";
 
         function moveLeft() {
-            element.style.left = getLeft(element) - 3 + "px";
+            element.style.left = getLeft(element) - step + "px";
         }
 
         function moveRight() {
-            element.style.left = getLeft(element) + 3 + "px";
+            element.style.left = getLeft(element) + step + "px";
         }
 
         function getLeft(e) {
@@ -68,6 +69,7 @@
         }
 
         function move() {
+            isMove = true;
             if (getLeft(element) >= containerWidth - elementWidth) {
                 direction = "left";
             }
@@ -84,8 +86,19 @@
         }
 
         document.querySelector("#startBtn").addEventListener("click", function () {
-            setInterval(move, 40);
+            if (!interval) interval = setInterval(move, 40);
         });
+        document.querySelector("#increaseBtn").addEventListener("click", function () {
+            step++;
+        });
+        document.querySelector("#decreaseBtn").addEventListener("click", function () {
+            step--;
+        });
+        document.querySelector("#stopBtn").addEventListener("click", function () {
+            clearInterval(interval);
+            interval = null;
+        });
+
     </script>
 </body>
 
