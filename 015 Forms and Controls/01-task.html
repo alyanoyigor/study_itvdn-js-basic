@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <form >
+    <form>
         <div class="form-grop">
             <label>Логин</label>
             <input type="text" name="loginInput">
@@ -37,7 +37,7 @@
             <input type="text" name="lastNameInput">
         </div>
         <div class="form-grop">
-            <input type="button" value="Отобразить значения">
+            <input type="button" id="show-values" value="Отобразить значения">
         </div>
     </form>
     <script>
@@ -45,6 +45,14 @@
         Задание:
         При нажатии на кнопку "Отобразить значения", используя цикл for, выведите значения всех элементов управления input (кроме input type=button), на консоль.
         */
+        let form = document.querySelector("form");
+        let button = document.querySelector("#show-values");
+        button.addEventListener("click", () => {
+            for (let i = 0; i < form.elements.length; i++) {
+                if (form.elements[i].type === "button") return;
+                console.log(form.elements[i].value);
+            }
+        })
     </script>
 </body>
 

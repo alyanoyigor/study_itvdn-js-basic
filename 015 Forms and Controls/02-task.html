@@ -42,7 +42,7 @@
 </head>
 
 <body>
-    
+
     <form name="productForm">
         <div class="form-group">
             <label for="name">Название</label>
@@ -52,6 +52,11 @@
         <div class="form-group">
             <label for="price">Цена</label>
             <input type="text" id="price" name="price">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Количество на складе</label>
+            <input type="number" id="count" name="count">
         </div>
 
         <div class="form-group">
@@ -80,18 +85,20 @@
         saveButton.addEventListener("click", function () {
             addRow(productForm.name.value,
                 productForm.price.value,
+                productForm.count.value,
                 productForm.currency.value);
 
             for (let i = 0; i < productForm.elements.length; i++) {
                 const element = productForm.elements[i];
-                if (element.type == "text") element.value = "";
+                if (element.type == "text" || element.type == "number") element.value = "";
             }
         });
 
-        function addRow(name, price, currency) {
+        function addRow(name, price, count, currency) {
             let tr = document.createElement("tr");
             tr.insertAdjacentHTML("beforeend", `<td>${name}</td>`);
             tr.insertAdjacentHTML("beforeend", `<td>${price}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${count}</td>`);
             tr.insertAdjacentHTML("beforeend", `<td>${currency}</td>`);
             productsTable.append(tr);
         }
