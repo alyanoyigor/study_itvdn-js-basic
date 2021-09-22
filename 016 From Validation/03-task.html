@@ -70,13 +70,27 @@
             alert("Форма отправлена");
         });
 
+        form.emailInput.addEventListener("input", function () {
+            console.log(this.value)
+            switch (this.value) {
+                case "admin@example.com":
+                    return this.setCustomValidity("Логин не прошел валидность");
+                case "superuser@example.com":
+                    return this.setCustomValidity("Логин не прошел валидность");
+                case "user@example.com":
+                    return this.setCustomValidity("Логин не прошел валидность");
+                default:
+                    return this.setCustomValidity("");
+            }
+        });
+
         form.passwordConfirmInput.addEventListener("input", function () {
             if (form.passwordConfirmInput.value != form.passwordInput.value) {
                 form.passwordConfirmInput.setCustomValidity("Пароль и подтверждение пароля не совпадают.");
                 form.passwordInput.setCustomValidity("Пароль и подтверждение пароля не совпадают.");
             }
             else {
-                form.passwordConfirmInput.setCustomValidity(""); 
+                form.passwordConfirmInput.setCustomValidity("");
                 form.passwordInput.setCustomValidity("");
             }
         });

@@ -54,7 +54,8 @@
         </div>
         <div class="form-group">
             <label>Номер кредитной карты</label>
-            <input type="text" name="creditCard">
+            <input type="text" name="creditCard" data-val="true" data-required="Введите Credit Card" id="creditCard"
+                data-pattern="\d{4}\d{4}\d{4}\d{4}" data-error-label="creditCardErrorLabel">
             <span class="error" id="creditCardErrorLabel">Ошибка</span>
         </div>
         <div class="form-group">
